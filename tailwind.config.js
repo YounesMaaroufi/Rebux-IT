@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -74,7 +77,24 @@ module.exports = {
       fontFamily: {
         inika: "inika",
       },
+      textShadow: {
+        sm: "0 1px 2px #5f59597a",
+        DEFAULT: "0 2px 4px #5f59597a",
+        lg: "0 8px 16px #5f59597a",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          "text-shadow": (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme("textShadow") }
+      );
+    }),
+  ],
 };

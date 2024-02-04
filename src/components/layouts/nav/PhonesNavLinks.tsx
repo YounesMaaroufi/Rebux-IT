@@ -5,6 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { routes } from "@/constants";
+import { Link } from "@tanstack/react-router";
 
 import { AlignRight } from "lucide-react";
 
@@ -16,11 +17,11 @@ const PhonesNavLinks = () => {
           <AlignRight color="#fff" size={50} />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {routes.map((route) => (
-            <DropdownMenuItem>
-              <a className="text-sm" href={route.href}>
+          {routes.map((route, i) => (
+            <DropdownMenuItem key={i}>
+              <Link className="text-sm" to={route.href}>
                 {route.label}
-              </a>
+              </Link>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>

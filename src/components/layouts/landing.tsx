@@ -1,21 +1,48 @@
-import Spline from "@splinetool/react-spline";
+import BuyCard from "../BuyCard";
+import CardCanvas from "../canvas/CardCanvas";
+import Description from "./Description";
+import Heading from "./Heading";
 
 const Landing = () => {
   return (
-    <>
-      <div className="h-[100vh] bg-black flex items-center">
-        <div className="w-full bg-white mx-auto flex justify-center flex-col items-center py-2 gap-y-1">
-          <h1 className="text-center text-xl">WHY POP CARDS ?</h1>
-          <div className="w-[264.5px] bg-black shadow-md h-0.5" />
-          <div className="w-[170px] bg-black shadow-md h-0.5" />
-          <div className="w-[80px] bg-black shadow-md h-0.5" />
+    <div className="relative bg-black">
+      {/* section 1 */}
+      <div className="min-h-[40vh] flex items-end">
+        {/* TODO: GALLERY */}
+        <Heading fill label="WHY POP CARDS ?" />
+      </div>
+      {/* section 2 */}
+      <div className="min-h-[20vh] py-20 flex justify-between flex-col lg:flex-row gap-y-10 items-center container mx-auto">
+        <Description
+          className="text-white"
+          description="GAIN YOUR CLIENTS & SAVE YOUR SELF TIME GET BETTER REVIEWS"
+        />
+        <CardCanvas />
+      </div>
+      {/* section 3 */}
+      <div className="min-h-[30vh] flex flex-col items-start">
+        <Heading fill label="IMPRESSION IS THE KEY" />
+        <div className="min-h-[20vh] py-20 flex justify-between flex-col lg:flex-row gap-y-10 items-center container mx-auto">
+          <Description
+            className="text-white"
+            description="In a world of empression and attention stand out and shine"
+          />
+          <CardCanvas />
         </div>
       </div>
-      <Spline
-        className="scale-50"
-        scene="https://prod.spline.design/8idh4ut5mWkGZKWZ/scene.splinecode"
-      />
-    </>
+      {/* section 4 */}
+      <div className="min-h-[30vh] flex flex-col bg-white my-10">
+        <Heading fill label="GET YOUR CARD NOW!" />
+        <div className="flex justify-between container px-20 mx-auto flex-col md:flex-row">
+          <BuyCard href="/buy" title="BUY A CARD!" buttonLabel="BUY NOW" />
+          <BuyCard
+            href="/customize"
+            title="CUSTOMIZE MY CARD!"
+            buttonLabel="CUSTOMIZE"
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

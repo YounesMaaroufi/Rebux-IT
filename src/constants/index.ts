@@ -1,22 +1,22 @@
 export const routes = [
   {
     label: "HOME",
-    href: "/#",
+    href: "/",
     active: "/",
   },
   {
     label: "BUY POP CARDS",
-    href: "/#buy",
+    href: "/buy",
     active: "/",
   },
   {
     label: "COSTUMIZE MY CARDS",
-    href: "/#cusotmize",
+    href: "/cusotmize",
     active: "/",
   },
   {
     label: "CONTACT US",
-    href: "/#contact",
+    href: "/contact",
     active: "/",
   },
 ];
