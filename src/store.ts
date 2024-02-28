@@ -5,11 +5,9 @@
 import { proxy } from "valtio";
 
 const state = proxy({
-  colors: ["white", "black", "pink", "purple", "yellow", "red", "green"],
-  color: "#000",
-  logo: "/logo.svg",
-  qrCode: "",
-  texture: "",
+  logo: "/logo.png",
+  qrCode: "/default-qrCode.png",
+  texture: "/default-texture.jpg",
 });
 
 export { state };

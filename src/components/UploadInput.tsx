@@ -1,8 +1,9 @@
-import { state } from "@/store";
-import { FC } from "react";
+import { reader } from "@/helpers";
+import { FC, useEffect, useState } from "react";
 import { buttonVariants } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import { state } from "@/store";
 
 interface UploadInputProps {
   id: string;
@@ -13,6 +14,26 @@ interface UploadInputProps {
  * to the global store
  */
 const UploadInput: FC<UploadInputProps> = ({ id, label }) => {
+  const [file, setFile] = useState<File>();
+
+  useEffect(() => {
+    readFile();
+  }, [file]);
+
+  const readFile = () => {
+    if (file) {
+      reader(file).then((result) => {
+        // @ts-ignore
+        state[id] = result;
+      });
+    }
+  };
+
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    if (!e?.target.files) return;
+
+    setFile(e?.target?.files[0]);
+  };
   return (
     <Label
       htmlFor={id}
@@ -21,12 +42,9 @@ const UploadInput: FC<UploadInputProps> = ({ id, label }) => {
       {label}
       <Input
         id={id}
+        accept="image/*"
         type="file"
-        onChange={(e) => {
-          if (e?.target.files) {
-            state["logo"] = e.target.files[0].name;
-          }
-        }}
+        onChange={handleChange}
         className="hidden"
       />
       <div

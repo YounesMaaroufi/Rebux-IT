@@ -13,8 +13,8 @@ const BuyCard: FC<BuyCardProps> = ({ buttonLabel, title, href }) => {
   return (
     <div className="flex flex-col gap-y-4 items-center">
       <Heading label={title} />
-      <div className="max-w-[450px] min-w-[300px]">
-        {/* TODO : add image */}
+      <div className="mx-auto">
+        <img src="/logo.png" alt="knowme" width={200} />
       </div>
       <Link
         className={buttonVariants({

@@ -10,7 +10,9 @@ import { Route as LayoutImport } from './routes/_layout'
 // Create Virtual Routes
 
 const LayoutIndexLazyImport = createFileRoute('/_layout/')()
-const LayoutBuyLazyImport = createFileRoute('/_layout/buy')()
+const LayoutCustomizeLazyImport = createFileRoute('/_layout/customize')()
+const LayoutContactLazyImport = createFileRoute('/_layout/contact')()
+const LayoutCheckoutLazyImport = createFileRoute('/_layout/checkout')()
 
 // Create/Update Routes
 
@@ -24,10 +26,26 @@ const LayoutIndexLazyRoute = LayoutIndexLazyImport.update({
   getParentRoute: () => LayoutRoute,
 } as any).lazy(() => import('./routes/_layout/index.lazy').then((d) => d.Route))
 
-const LayoutBuyLazyRoute = LayoutBuyLazyImport.update({
-  path: '/buy',
+const LayoutCustomizeLazyRoute = LayoutCustomizeLazyImport.update({
+  path: '/customize',
   getParentRoute: () => LayoutRoute,
-} as any).lazy(() => import('./routes/_layout/buy.lazy').then((d) => d.Route))
+} as any).lazy(() =>
+  import('./routes/_layout/customize.lazy').then((d) => d.Route),
+)
+
+const LayoutContactLazyRoute = LayoutContactLazyImport.update({
+  path: '/contact',
+  getParentRoute: () => LayoutRoute,
+} as any).lazy(() =>
+  import('./routes/_layout/contact.lazy').then((d) => d.Route),
+)
+
+const LayoutCheckoutLazyRoute = LayoutCheckoutLazyImport.update({
+  path: '/checkout',
+  getParentRoute: () => LayoutRoute,
+} as any).lazy(() =>
+  import('./routes/_layout/checkout.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -37,8 +55,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutImport
       parentRoute: typeof rootRoute
     }
-    '/_layout/buy': {
-      preLoaderRoute: typeof LayoutBuyLazyImport
+    '/_layout/checkout': {
+      preLoaderRoute: typeof LayoutCheckoutLazyImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/contact': {
+      preLoaderRoute: typeof LayoutContactLazyImport
+      parentRoute: typeof LayoutImport
+    }
+    '/_layout/customize': {
+      preLoaderRoute: typeof LayoutCustomizeLazyImport
       parentRoute: typeof LayoutImport
     }
     '/_layout/': {
@@ -51,5 +77,10 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren([
-  LayoutRoute.addChildren([LayoutBuyLazyRoute, LayoutIndexLazyRoute]),
+  LayoutRoute.addChildren([
+    LayoutCheckoutLazyRoute,
+    LayoutContactLazyRoute,
+    LayoutCustomizeLazyRoute,
+    LayoutIndexLazyRoute,
+  ]),
 ])

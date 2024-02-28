@@ -1,6 +1,5 @@
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { FaFacebookMessenger } from "react-icons/fa6";
-import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -13,14 +12,17 @@ const Footer = () => {
       </div>
       <div className="flex justify-between mx-20">
         {/* TODO: social media icons and links */}
-        <a href="https://instagram.com" target="_blank">
+        <a href="https://instagram.com" className="space-y-1" target="_blank">
           <FaInstagram size={50} />
+          <FaInstagram className="opacity-20" size={50} />
         </a>
-        <a href="https://messanger.com" target="_blank">
+        <a href="https://messanger.com" className="space-y-1" target="_blank">
           <FaFacebookMessenger size={50} />
+          <FaFacebookMessenger className="opacity-20" size={50} />
         </a>
-        <a href="http://web.whatsapp.com" target="_blank">
-          <FaWhatsapp size={50} />
+        <a href="http://web.whatsapp.com" className="space-y-1" target="_blank">
+          <FaWhatsapp className="shadow-2xl text-2xl" size={50} />
+          <FaWhatsapp className="opacity-20" size={50} />
         </a>
       </div>
     </div>
